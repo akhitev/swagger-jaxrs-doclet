@@ -1,6 +1,7 @@
 package com.hypnoticocelot.jaxrs.doclet.sample;
 
 import com.google.common.base.Optional;
+import com.hypnoticocelot.jaxrs.doclet.sample.filters.CorsHeadersFilter;
 import com.hypnoticocelot.jaxrs.doclet.sample.resources.*;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.assets.AssetsBundle;
@@ -24,6 +25,7 @@ public class SampleService extends Service<Configuration> {
 
     @Override
     public void run(Configuration configuration, Environment environment) throws Exception {
+        environment.addFilter(CorsHeadersFilter.class, "/*");
         environment.addProvider(new BasicAuthProvider<String>(new Authenticator<BasicCredentials, String>() {
             @Override
             public Optional<String> authenticate(BasicCredentials basicCredentials) throws AuthenticationException {
