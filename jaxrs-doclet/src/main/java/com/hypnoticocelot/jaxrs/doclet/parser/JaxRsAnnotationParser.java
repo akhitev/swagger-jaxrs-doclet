@@ -57,7 +57,7 @@ public class JaxRsAnnotationParser {
         List<ResourceListingAPI> resources = new LinkedList<ResourceListingAPI>();
         File outputDirectory = options.getOutputDirectory();
         File specDirectory = new File(outputDirectory,"spec-files/");
-//        specDirectory.mkdir();
+        specDirectory.mkdir();
         Recorder recorder = options.getRecorder();
 
         for (ApiDeclaration api : apis) {

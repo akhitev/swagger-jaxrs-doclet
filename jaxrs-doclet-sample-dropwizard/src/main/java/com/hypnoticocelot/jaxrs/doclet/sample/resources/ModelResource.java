@@ -16,9 +16,9 @@ public class ModelResource {
         return new ModelResourceModel(modelId, "Model Title", "Model Description", new DateTime());
     }
 
-    @Path("/new")
-    @PUT
-    public ModelResourceModel addModel(@FormParam("model") ModelResourceModel model) {
-        return model;
-    }
+//    @Path("/new")
+//    @PUT
+//    public ModelResourceModel addModel(@FormParam("model") ModelResourceModel model) {
+//        return model;
+//    }
     }
