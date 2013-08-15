@@ -56,18 +56,20 @@ public class JaxRsAnnotationParser {
     private void writeApis(Collection<ApiDeclaration> apis) throws IOException {
         List<ResourceListingAPI> resources = new LinkedList<ResourceListingAPI>();
         File outputDirectory = options.getOutputDirectory();
+        File specDirectory = new File(outputDirectory,"spec-files/");
+//        specDirectory.mkdir();
         Recorder recorder = options.getRecorder();
 
         for (ApiDeclaration api : apis) {
             String resourceName = api.getResourcePath().replaceFirst("/", "").replaceAll("/", "_").replaceAll("[\\{\\}]", "");
             resources.add(new ResourceListingAPI("/" + resourceName + ".{format}", ""));
-            File apiFile = new File(outputDirectory, resourceName + ".json");
+            File apiFile = new File(specDirectory, resourceName + ".json");
             recorder.record(apiFile, api);
         }
 
         //write out json for api
         ResourceListing listing = new ResourceListing(options.getApiVersion(), options.getDocBasePath(), resources);
-        File docFile = new File(outputDirectory, "service.json");
+        File docFile = new File(specDirectory, "resources.json");
         recorder.record(docFile, listing);
 
         // Copy swagger-ui into the output directory.
