@@ -39,5 +39,6 @@ public class SampleService extends Service<Configuration> {
 //        environment.addResource(new RecursiveResource());
         environment.addResource(new ResponseResource());
         environment.addResource(new ModelResource());
+        environment.addResource(new HelloResource());
     }
 }
