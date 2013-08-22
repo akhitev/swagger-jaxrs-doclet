@@ -8,6 +8,8 @@ import com.hypnoticocelot.jaxrs.doclet.model.Method;
 import com.hypnoticocelot.jaxrs.doclet.model.Model;
 import com.hypnoticocelot.jaxrs.doclet.translator.Translator;
 import com.sun.javadoc.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -24,6 +26,8 @@ public class ApiMethodParser {
     private final String parentPath;
     private final MethodDoc methodDoc;
     private final Set<Model> models;
+
+    final static Logger logger = LoggerFactory.getLogger(ApiMethodParser.class);
 
     public ApiMethodParser(DocletOptions options, String parentPath, MethodDoc methodDoc) {
         this.options = options;

@@ -12,11 +12,6 @@ import java.util.Map;
 
 public class ServiceDoclet {
   final static Logger logger = LoggerFactory.getLogger(ServiceDoclet.class);
-  {
-    ILoggerFactory iLoggerFactory = LoggerFactory.getILoggerFactory();
-
-  }
-
     /**
      * Generate documentation here.
      * This method is required for all doclets.
@@ -24,7 +19,8 @@ public class ServiceDoclet {
      * @return true on success.
      */
     public static boolean start(RootDoc doc) {
-        logger.error("Start doclet");
+        logger.debug("Starting  doclet ");
+        logger.debug("rootDoc: " + doc.classes().toString());
         DocletOptions options = DocletOptions.parse(doc.options());
         return new JaxRsAnnotationParser(options, doc).run();
     }

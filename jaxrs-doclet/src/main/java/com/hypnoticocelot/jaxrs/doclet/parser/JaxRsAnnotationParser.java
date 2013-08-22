@@ -7,6 +7,8 @@ import com.hypnoticocelot.jaxrs.doclet.ServiceDoclet;
 import com.hypnoticocelot.jaxrs.doclet.model.*;
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.RootDoc;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +19,8 @@ import java.util.zip.ZipInputStream;
 import static com.google.common.collect.Maps.uniqueIndex;
 
 public class JaxRsAnnotationParser {
+
+    final static Logger logger = LoggerFactory.getLogger(JaxRsAnnotationParser.class);
 
     private final DocletOptions options;
     private final RootDoc rootDoc;
@@ -29,7 +33,9 @@ public class JaxRsAnnotationParser {
     public boolean run() {
         try {
             Collection<ApiDeclaration> declarations = new ArrayList<ApiDeclaration>();
+            logger.debug(" iterate over classes");
             for (ClassDoc classDoc : rootDoc.classes()) {
+                logger.debug("parse class : " + classDoc.qualifiedName());
                 ApiClassParser classParser = new ApiClassParser(options, classDoc);
                 Collection<Api> apis = classParser.parse();
                 if (apis.isEmpty()) {
@@ -42,6 +48,7 @@ public class JaxRsAnnotationParser {
                         return model.getId();
                     }
                 });
+                logger.debug("models parsed: " + models.keySet().toString());
                 // The idea (and need) for the declaration is that "/foo" and "/foo/annotated" are stored in separate
                 // Api classes but are part of the same resource.
                 declarations.add(new ApiDeclaration(options.getApiVersion(), options.getApiBasePath(), classParser.getRootPath(), apis, models));

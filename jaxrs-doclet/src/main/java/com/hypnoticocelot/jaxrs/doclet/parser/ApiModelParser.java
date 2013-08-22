@@ -5,6 +5,8 @@ import com.hypnoticocelot.jaxrs.doclet.model.Model;
 import com.hypnoticocelot.jaxrs.doclet.model.Property;
 import com.hypnoticocelot.jaxrs.doclet.translator.Translator;
 import com.sun.javadoc.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
@@ -15,6 +17,8 @@ public class ApiModelParser {
     private final Translator translator;
     private final Type rootType;
     private final Set<Model> models;
+    final static Logger logger = LoggerFactory.getLogger(ApiModelParser.class);
+    private static final Set<String> thriftInternalFields = new HashSet<String>(Arrays.asList(new String[]{"fieldValue", "metaDataMap"}));
 
     public ApiModelParser(Translator translator, Type rootType) {
         this.translator = translator;
@@ -35,7 +39,7 @@ public class ApiModelParser {
         if (isPrimitive || isJavaxType || isBaseObject || classDoc == null || alreadyStoredType(type)) {
             return;
         }
-
+        logger.debug("parse model " + type.qualifiedTypeName());
         Map<String, Type> types = findReferencedTypes(classDoc);
         Map<String, Property> elements = findReferencedElements(types);
         if (!elements.isEmpty()) {
@@ -48,9 +52,16 @@ public class ApiModelParser {
         Map<String, Type> elements = new HashMap<String, Type>();
 
         FieldDoc[] fieldDocs = classDoc.fields();
+        logger.debug("findReferencedTypes ");
+        logger.debug("fields docs : " + Arrays.toString(fieldDocs));
         if (fieldDocs != null) {
             for (FieldDoc field : fieldDocs) {
                 String name = translator.fieldName(field).value();
+                logger.debug("field name : " + name);
+                // skip thrift related field
+                if ("metaDataMap".equals(name)) {
+                    continue;
+                }
                 if (name != null && !elements.containsKey(name)) {
                     elements.put(name, field.type());
                 }
@@ -58,6 +69,7 @@ public class ApiModelParser {
         }
 
         MethodDoc[] methodDocs = classDoc.methods();
+        logger.debug("methodDocs : " + Arrays.toString(methodDocs ));
         if (methodDocs != null) {
             for (MethodDoc method : methodDocs) {
                 String name = translator.methodName(method).value();
@@ -70,15 +82,19 @@ public class ApiModelParser {
     }
 
     private Map<String, Property> findReferencedElements(Map<String, Type> types) {
+        logger.debug("findReferencedElements ");
         Map<String, Property> elements = new HashMap<String, Property>();
         for (Map.Entry<String, Type> entry : types.entrySet()) {
             String typeName = entry.getKey();
+            if (thriftInternalFields.contains(typeName)) {
+                continue;
+            }
             Type type = entry.getValue();
             ClassDoc typeClassDoc = type.asClassDoc();
-
+            logger.debug(" typeName " + typeName);
             Type containerOf = parseParameterisedTypeOf(type);
             String containerTypeOf = containerOf == null ? null : translator.typeName(containerOf).value();
-
+            logger.debug(" containerTypeOf  " + containerTypeOf);
             String propertyName = translator.typeName(type).value();
             Property property;
             if (typeClassDoc != null && typeClassDoc.isEnum()) {

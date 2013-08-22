@@ -8,6 +8,8 @@ import com.hypnoticocelot.jaxrs.doclet.model.Model;
 import com.hypnoticocelot.jaxrs.doclet.model.Operation;
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.MethodDoc;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
@@ -15,6 +17,8 @@ import static com.google.common.collect.Collections2.transform;
 import static com.hypnoticocelot.jaxrs.doclet.parser.AnnotationHelper.parsePath;
 
 public class ApiClassParser {
+
+    final static Logger logger = LoggerFactory.getLogger(ApiClassParser.class);
 
     private final DocletOptions options;
     private final ClassDoc classDoc;
@@ -34,8 +38,8 @@ public class ApiClassParser {
 
     public Collection<Api> parse() {
         Map<String, Collection<Method>> apiMethods = new HashMap<String, Collection<Method>>();
-
         for (MethodDoc method : classDoc.methods()) {
+            logger.debug("parse method : "+ method.qualifiedName());
             ApiMethodParser methodParser = new ApiMethodParser(options, rootPath, method);
             Method parsedMethod = methodParser.parse();
             if (parsedMethod == null) {
