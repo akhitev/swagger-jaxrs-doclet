@@ -1,49 +1,45 @@
 package com.hypnoticocelot.jaxrs.doclet.sample.resources;
 
-import com.hypnoticocelot.jaxrs.doclet.sample.api.THello;
+
+import com.hypnoticocelot.jaxrs.doclet.sample.api.TLocation;
+import com.hypnoticocelot.jaxrs.doclet.sample.api.TPerson;
+import com.hypnoticocelot.jaxrs.doclet.sample.api.TPersonName;
 import com.yammer.metrics.annotation.Timed;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Calendar;
 
-@Path("/hello")
+@Path("/")
 @Produces(MediaType.APPLICATION_JSON)
 public class PersonResource {
 
-// JSON for Thello {"id":"agora","value":"value","setId":true,"setValue":true}
-/* model json for Thrift entity should be
-"THello" : {
-"id " : "THello",
-properties" : {
-        "id" : {
-          "type" : "string"
-        },
-        "value" : {
-          "type" : "string"
-        }
-}
-*/
-
-
-@PUT
-@Path("/hellos/{id}")
-@Timed
-public Response updateHello(@PathParam("id") String id, THello tHello) {
-        return Response.status(Response.Status.OK).entity(tHello).build();
+    @GET
+    @Path("persons/{uid}")
+    @Timed
+    public Response getPerson(@PathParam("uid") String uid) {
+        TPerson tPerson = new TPerson( "123",
+        "312",
+        "ref",
+        new TPersonName(),
+        new TLocation(),
+        "example.com/photo.jpg",
+                Calendar.getInstance().getTimeInMillis());
+        return Response.status(Response.Status.OK).entity(tPerson).build();
     }
 
   @POST
-    @Path("hellos")
+    @Path("persons")
     @Timed
-    public Response addHello(THello tHello) {
-    return Response.status(Response.Status.OK).entity(tHello).build();
+    public Response addHello(TPerson tPerson) {
+    return Response.status(Response.Status.OK).entity(tPerson).build();
   }
 
-  @GET
-  @Path("/hellos/{id}")
+  @PUT
+  @Path("/persons/{id}")
   @Timed
-  public Response getHello(@PathParam("id") String id, THello tHello) {
-          return Response.status(Response.Status.OK).entity(tHello).build();
+  public Response updatePerson(@PathParam("id") String id, TPerson tPerson) {
+          return Response.status(Response.Status.OK).entity(tPerson).build();
       }
 }

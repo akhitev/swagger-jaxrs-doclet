@@ -7,21 +7,15 @@
 package com.hypnoticocelot.jaxrs.doclet.sample.api;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.thrift.EncodingUtils;
+import org.apache.thrift.TException;
+import org.apache.thrift.protocol.TTupleProtocol;
 import org.apache.thrift.scheme.IScheme;
 import org.apache.thrift.scheme.SchemeFactory;
 import org.apache.thrift.scheme.StandardScheme;
-
 import org.apache.thrift.scheme.TupleScheme;
-import org.apache.thrift.protocol.TTupleProtocol;
-import org.apache.thrift.EncodingUtils;
-import org.apache.thrift.TException;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.EnumMap;
-import java.util.EnumSet;
-import java.util.Collections;
-import java.util.BitSet;
+import java.util.*;
 
 public class TPerson implements org.apache.thrift.TBase<TPerson, TPerson._Fields>, java.io.Serializable, Cloneable {
   private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("TPerson");
@@ -43,8 +37,8 @@ public class TPerson implements org.apache.thrift.TBase<TPerson, TPerson._Fields
   private String uid; // required
   private String legacyId; // required
   private String legacyRef; // required
-  private com.odesk.agora.thrift.common.TPersonName personName; // required
-  private com.odesk.agora.thrift.common.TLocation location; // required
+  private TPersonName personName; // required
+  private TLocation location; // required
   private String photoUrl; // required
   private long creationDate; // required
 
@@ -137,9 +131,9 @@ public class TPerson implements org.apache.thrift.TBase<TPerson, TPerson._Fields
     tmpMap.put(_Fields.LEGACY_REF, new org.apache.thrift.meta_data.FieldMetaData("legacyRef", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.PERSON_NAME, new org.apache.thrift.meta_data.FieldMetaData("personName", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.odesk.agora.thrift.common.TPersonName.class)));
+        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, TPersonName.class)));
     tmpMap.put(_Fields.LOCATION, new org.apache.thrift.meta_data.FieldMetaData("location", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.odesk.agora.thrift.common.TLocation.class)));
+        new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, TLocation.class)));
     tmpMap.put(_Fields.PHOTO_URL, new org.apache.thrift.meta_data.FieldMetaData("photoUrl", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.CREATION_DATE, new org.apache.thrift.meta_data.FieldMetaData("creationDate", org.apache.thrift.TFieldRequirementType.DEFAULT, 
@@ -155,8 +149,8 @@ public class TPerson implements org.apache.thrift.TBase<TPerson, TPerson._Fields
           String uid,
           String legacyId,
           String legacyRef,
-          com.odesk.agora.thrift.common.TPersonName personName,
-          com.odesk.agora.thrift.common.TLocation location,
+          TPersonName personName,
+          TLocation location,
           String photoUrl,
           long creationDate)
   {
@@ -186,10 +180,10 @@ public class TPerson implements org.apache.thrift.TBase<TPerson, TPerson._Fields
       this.legacyRef = other.legacyRef;
     }
     if (other.isSetPersonName()) {
-      this.personName = new com.odesk.agora.thrift.common.TPersonName(other.personName);
+      this.personName = new TPersonName(other.personName);
     }
     if (other.isSetLocation()) {
-      this.location = new com.odesk.agora.thrift.common.TLocation(other.location);
+      this.location = new TLocation(other.location);
     }
     if (other.isSetPhotoUrl()) {
       this.photoUrl = other.photoUrl;
@@ -282,11 +276,11 @@ public class TPerson implements org.apache.thrift.TBase<TPerson, TPerson._Fields
     }
   }
 
-  public com.odesk.agora.thrift.common.TPersonName getPersonName() {
+  public TPersonName getPersonName() {
     return this.personName;
   }
 
-  public void setPersonName(com.odesk.agora.thrift.common.TPersonName personName) {
+  public void setPersonName(TPersonName personName) {
     this.personName = personName;
   }
 
@@ -305,11 +299,11 @@ public class TPerson implements org.apache.thrift.TBase<TPerson, TPerson._Fields
     }
   }
 
-  public com.odesk.agora.thrift.common.TLocation getLocation() {
+  public TLocation getLocation() {
     return this.location;
   }
 
-  public void setLocation(com.odesk.agora.thrift.common.TLocation location) {
+  public void setLocation(TLocation location) {
     this.location = location;
   }
 
@@ -403,7 +397,7 @@ public class TPerson implements org.apache.thrift.TBase<TPerson, TPerson._Fields
       if (value == null) {
         unsetPersonName();
       } else {
-        setPersonName((com.odesk.agora.thrift.common.TPersonName)value);
+        setPersonName((TPersonName)value);
       }
       break;
 
@@ -411,7 +405,7 @@ public class TPerson implements org.apache.thrift.TBase<TPerson, TPerson._Fields
       if (value == null) {
         unsetLocation();
       } else {
-        setLocation((com.odesk.agora.thrift.common.TLocation)value);
+        setLocation((TLocation)value);
       }
       break;
 
@@ -833,7 +827,7 @@ public class TPerson implements org.apache.thrift.TBase<TPerson, TPerson._Fields
             break;
           case 4: // PERSON_NAME
             if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-              struct.personName = new com.odesk.agora.thrift.common.TPersonName();
+              struct.personName = new TPersonName();
               struct.personName.read(iprot);
               struct.setPersonNameIsSet(true);
             } else {
@@ -842,7 +836,7 @@ public class TPerson implements org.apache.thrift.TBase<TPerson, TPerson._Fields
             break;
           case 5: // LOCATION
             if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-              struct.location = new com.odesk.agora.thrift.common.TLocation();
+              struct.location = new TLocation();
               struct.location.read(iprot);
               struct.setLocationIsSet(true);
             } else {
@@ -991,12 +985,12 @@ public class TPerson implements org.apache.thrift.TBase<TPerson, TPerson._Fields
         struct.setLegacyRefIsSet(true);
       }
       if (incoming.get(3)) {
-        struct.personName = new com.odesk.agora.thrift.common.TPersonName();
+        struct.personName = new TPersonName();
         struct.personName.read(iprot);
         struct.setPersonNameIsSet(true);
       }
       if (incoming.get(4)) {
-        struct.location = new com.odesk.agora.thrift.common.TLocation();
+        struct.location = new TLocation();
         struct.location.read(iprot);
         struct.setLocationIsSet(true);
       }

@@ -23,44 +23,6 @@ properties" : {
           "type" : "string"
         }
 }
-
-###########
-now it is generated as =>
-"models" : {
-    "THello" : {
-      "id" : "THello",
-      "properties" : {
-        "id" : {
-          "type" : "string"
-        },
-        TODO remove folowing 2 fields
-        "metaDataMap" : {
-          "type" : "Map",
-          "items" : {
-            "$ref" : "_Fields"
-          }
-        },
-        "fieldValue" : {
-          "type" : "object"
-        },
-        "value" : {
-          "type" : "string"
-        }
-      }
-    },  TODO remove this model at all
-    "_Fields" : {
-      "id" : "_Fields",
-      "properties" : {
-        "fieldName" : {
-          "type" : "string"
-        },
-        "thriftFieldId" : {
-          "type" : "short"
-        }
-      }
-    }
-
-
 */
 
 
@@ -81,7 +43,8 @@ public Response updateHello(@PathParam("id") String id, THello tHello) {
   @GET
   @Path("/hellos/{id}")
   @Timed
-  public Response getHello(@PathParam("id") String id, THello tHello) {
-          return Response.status(Response.Status.OK).entity(tHello).build();
+  public Response getHello(@PathParam("id") String id) {
+      THello tHello = new THello();
+        return Response.status(Response.Status.OK).entity(tHello).build();
       }
 }
