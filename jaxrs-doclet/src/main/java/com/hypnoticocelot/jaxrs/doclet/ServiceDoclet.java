@@ -3,11 +3,19 @@ package com.hypnoticocelot.jaxrs.doclet;
 import com.hypnoticocelot.jaxrs.doclet.parser.JaxRsAnnotationParser;
 import com.sun.javadoc.LanguageVersion;
 import com.sun.javadoc.RootDoc;
+import org.slf4j.ILoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ServiceDoclet {
+  final static Logger logger = LoggerFactory.getLogger(ServiceDoclet.class);
+  {
+    ILoggerFactory iLoggerFactory = LoggerFactory.getILoggerFactory();
+
+  }
 
     /**
      * Generate documentation here.
@@ -16,6 +24,7 @@ public class ServiceDoclet {
      * @return true on success.
      */
     public static boolean start(RootDoc doc) {
+        logger.error("Start doclet");
         DocletOptions options = DocletOptions.parse(doc.options());
         return new JaxRsAnnotationParser(options, doc).run();
     }
