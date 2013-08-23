@@ -20,7 +20,6 @@ public class ServiceDoclet {
      */
     public static boolean start(RootDoc doc) {
         logger.debug("Starting  doclet ");
-        logger.debug("rootDoc: " + doc.classes().toString());
         DocletOptions options = DocletOptions.parse(doc.options());
         return new JaxRsAnnotationParser(options, doc).run();
     }
