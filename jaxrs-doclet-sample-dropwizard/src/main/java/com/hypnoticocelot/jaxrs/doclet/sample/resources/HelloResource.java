@@ -1,5 +1,6 @@
 package com.hypnoticocelot.jaxrs.doclet.sample.resources;
 
+import com.hypnoticocelot.jaxrs.doclet.sample.api.ModelResourceModel;
 import com.hypnoticocelot.jaxrs.doclet.sample.api.THello;
 import com.yammer.metrics.annotation.Timed;
 
@@ -26,25 +27,25 @@ properties" : {
 */
 
 
-@PUT
-@Path("/hellos/{id}")
-@Timed
-public Response updateHello(@PathParam("id") String id, THello tHello) {
+    @PUT
+    @Path("/hellos/{id}")
+    @Timed
+    public Response updateHello(@PathParam("id") String id, THello tHello) {
         return Response.status(Response.Status.OK).entity(tHello).build();
     }
 
-  @POST
-    @Path("hellos")
+    @POST
+    @Path("/hellos")
     @Timed
     public Response addHello(THello tHello) {
-    return Response.status(Response.Status.OK).entity(tHello).build();
-  }
-
-  @GET
-  @Path("/hellos/{id}")
-  @Timed
-  public Response getHello(@PathParam("id") String id) {
-      THello tHello = new THello();
         return Response.status(Response.Status.OK).entity(tHello).build();
-      }
+    }
+
+    @GET
+    @Path("/hellos/{id}")
+    @Timed
+    public Response getHello(@PathParam("id") String id) {
+        THello tHello = new THello();
+        return Response.status(Response.Status.OK).entity(tHello).build();
+    }
 }

@@ -40,5 +40,6 @@ public class SampleService extends Service<Configuration> {
         environment.addResource(new ResponseResource());
         environment.addResource(new ModelResource());
         environment.addResource(new HelloResource());
+        environment.addResource(new PersonResource());
     }
 }

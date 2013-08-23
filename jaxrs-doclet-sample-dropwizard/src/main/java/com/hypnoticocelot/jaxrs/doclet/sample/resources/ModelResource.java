@@ -1,10 +1,13 @@
 package com.hypnoticocelot.jaxrs.doclet.sample.resources;
 
 import com.hypnoticocelot.jaxrs.doclet.sample.api.ModelResourceModel;
+import com.hypnoticocelot.jaxrs.doclet.sample.api.THello;
+import com.yammer.metrics.annotation.Timed;
 import org.joda.time.DateTime;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/ModelResource")
 @Produces(MediaType.APPLICATION_JSON)

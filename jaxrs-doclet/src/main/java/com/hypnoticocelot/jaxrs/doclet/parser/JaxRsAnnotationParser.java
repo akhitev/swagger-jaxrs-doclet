@@ -66,8 +66,9 @@ public class JaxRsAnnotationParser {
         File specDirectory = new File(outputDirectory,"spec-files/");
         specDirectory.mkdir();
         Recorder recorder = options.getRecorder();
-
+        logger.debug("iterate over apis");
         for (ApiDeclaration api : apis) {
+            logger.debug("api : " + api);
             String resourceName = api.getResourcePath().replaceFirst("/", "").replaceAll("/", "_").replaceAll("[\\{\\}]", "");
             resources.add(new ResourceListingAPI("/" + resourceName + ".{format}", ""));
             File apiFile = new File(specDirectory, resourceName + ".json");

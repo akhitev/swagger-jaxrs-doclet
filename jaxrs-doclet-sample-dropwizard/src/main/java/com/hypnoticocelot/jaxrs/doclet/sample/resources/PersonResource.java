@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Calendar;
 
-@Path("/")
+@Path("/person")
 @Produces(MediaType.APPLICATION_JSON)
 public class PersonResource {
 
@@ -32,7 +32,7 @@ public class PersonResource {
   @POST
     @Path("persons")
     @Timed
-    public Response addHello(TPerson tPerson) {
+    public Response addPerson(TPerson tPerson) {
     return Response.status(Response.Status.OK).entity(tPerson).build();
   }
 
