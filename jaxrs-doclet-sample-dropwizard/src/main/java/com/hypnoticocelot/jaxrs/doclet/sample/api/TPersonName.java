@@ -28,6 +28,12 @@ public class TPersonName implements org.apache.thrift.TBase<TPersonName, TPerson
     schemes.put(TupleScheme.class, new TPersonNameTupleSchemeFactory());
   }
 
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
   private String lastName; // required
   private String firstName; // required
 

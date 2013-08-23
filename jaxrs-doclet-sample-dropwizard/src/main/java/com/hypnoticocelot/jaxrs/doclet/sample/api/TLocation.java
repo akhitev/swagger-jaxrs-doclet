@@ -29,6 +29,11 @@ public class TLocation implements org.apache.thrift.TBase<TLocation, TLocation._
     schemes.put(TupleScheme.class, new TLocationTupleSchemeFactory());
   }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
   private String city; // required
   private String country; // required
   private String timezone; // required

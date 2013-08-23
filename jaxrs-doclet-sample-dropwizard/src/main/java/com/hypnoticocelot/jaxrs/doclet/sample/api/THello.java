@@ -27,7 +27,12 @@ public class THello implements org.apache.thrift.TBase<THello, THello._Fields>, 
     schemes.put(TupleScheme.class, new THelloTupleSchemeFactory());
   }
 
-  private String id; // required
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
+    private String id; // required
   private String value; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */

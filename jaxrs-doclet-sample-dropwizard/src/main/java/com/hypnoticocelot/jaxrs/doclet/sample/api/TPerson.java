@@ -34,6 +34,11 @@ public class TPerson implements org.apache.thrift.TBase<TPerson, TPerson._Fields
     schemes.put(TupleScheme.class, new TPersonTupleSchemeFactory());
   }
 
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
   private String uid; // required
   private String legacyId; // required
   private String legacyRef; // required
