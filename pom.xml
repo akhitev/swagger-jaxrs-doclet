@@ -34,9 +34,9 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git@github.com:ryankennedy/swagger-jaxrs-doclet.git</connection>
-        <developerConnection>scm:git:git@github.com:ryankennedy/swagger-jaxrs-doclet.git</developerConnection>
-        <url>https://github.com/ryankennedy/swagger-jaxrs-doclet</url>
+        <connection>scm:git:git@github.com:akhitev/swagger-jaxrs-doclet.git</connection>
+        <developerConnection>scm:git:git@github.com:akhitev/swagger-jaxrs-doclet.git</developerConnection>
+        <url>https://github.com/akhitev/swagger-jaxrs-doclet</url>
         <tag>v0.0.3</tag>
     </scm>
 
