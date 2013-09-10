@@ -1,6 +1,5 @@
 package com.hypnoticocelot.jaxrs.doclet.sample.resources;
 
-import com.hypnoticocelot.jaxrs.doclet.sample.api.ModelResourceModel;
 import com.hypnoticocelot.jaxrs.doclet.sample.api.THello;
 import com.yammer.metrics.annotation.Timed;
 
@@ -37,7 +36,7 @@ properties" : {
     @POST
     @Path("/hellos")
     @Timed
-    public Response addHello(THello tHello) {
+    public Response addHello(THello tHello,@QueryParam("flag") Boolean flag) {
         return Response.status(Response.Status.OK).entity(tHello).build();
     }
 

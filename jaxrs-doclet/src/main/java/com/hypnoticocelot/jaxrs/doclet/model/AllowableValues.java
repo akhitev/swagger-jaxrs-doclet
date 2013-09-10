@@ -16,7 +16,7 @@ public class AllowableValues {
     }
 
     public String getValueType() {
-        return "List";
+        return "LIST";
     }
 
     public List<String> getValues() {
