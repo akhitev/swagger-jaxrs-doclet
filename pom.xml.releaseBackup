@@ -5,9 +5,9 @@
     <groupId>com.hypnoticocelot</groupId>
     <artifactId>jaxrs-doclet-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
     <name>JAX-RS Doclet</name>
-    <url>https://github.com/odeskdev/swagger-jaxrs-doclet</url>
+    <url>https://github.com/akhitev/swagger-jaxrs-doclet</url>
     <description>
         A JavaDoc Doclet that can be used to generate a Swagger resource listing suitable for feeding to swagger-ui.
     </description>
@@ -34,15 +34,15 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:git@github.com:odeskdev/swagger-jaxrs-doclet.git</connection>
-        <developerConnection>scm:git:git@github.com:odeskdev/swagger-jaxrs-doclet.git</developerConnection>
-        <url>https://github.com/odeskdev/swagger-jaxrs-doclet</url>
-        <tag>v0.0.4</tag>
+        <connection>scm:git:git@github.com:akhitev/swagger-jaxrs-doclet.git</connection>
+        <developerConnection>scm:git:git@github.com:akhitev/swagger-jaxrs-doclet.git</developerConnection>
+        <url>https://github.com/akhitev/swagger-jaxrs-doclet</url>
+        <tag>v0.0.3</tag>
     </scm>
 
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/odeskdev/swagger-jaxrs-doclet/issues</url>
+        <url>https://github.com/akhitev/swagger-jaxrs-doclet/issues</url>
     </issueManagement>
 
     <repositories>
@@ -61,14 +61,14 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>ip-172-27-68-112</id>
-            <name>ip-172-27-68-112-snapshots</name>
-            <url>http://sonar.agora.odesk.com:8081/artifactory/ext-snapshot-local</url>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
-            <id>ip-172-27-68-112</id>
-            <name>ip-172-27-68-112-releases</name>
-            <url>http://sonar.agora.odesk.com:8081/artifactory/ext-release-local</url>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
 
@@ -87,6 +87,9 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                         <version>1.4</version>
+                        <configuration>
+                        <skip>true</skip>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
